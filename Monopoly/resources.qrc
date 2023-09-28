@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/icon.ico</file>
+        <file>images/monopoly_logo.png</file>
+    </qresource>
+    <qresource prefix="/board">
+        <file>board/board.jpg</file>
+        <file>board/checker.png</file>
+        <file>board/dice_1.png</file>
+        <file>board/dice_2.png</file>
+        <file>board/dice_3.png</file>
+        <file>board/dice_4.png</file>
+        <file>board/dice_5.png</file>
+        <file>board/dice_6.png</file>
+    </qresource>
+</RCC>
