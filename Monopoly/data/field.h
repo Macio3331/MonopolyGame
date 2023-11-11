@@ -32,6 +32,10 @@ public:
     virtual int get_number_of_houses() { return 0; }
     virtual int get_payment(int number) { return 0 * number; }
     virtual int get_buying_cost() { return 0; }
+    virtual void set_popped(bool pop) { if(pop) classname = "field"; }
+    virtual void add_number_of_houses() {}
+    virtual void substract_number_of_houses() {}
+    virtual void reset_number_of_houses() {}
 };
 
 class FieldProperty : public Field
@@ -51,6 +55,10 @@ public:
     virtual int get_buying_cost() override { return buying_cost; }
     virtual int get_building_cost() override { return building_cost; }
     virtual bool get_popped() override { return popped; }
+    virtual void set_popped(bool pop) override { popped = pop; }
+    virtual void add_number_of_houses() override { number_of_houses++; }
+    virtual void substract_number_of_houses() override { number_of_houses--; }
+    virtual void reset_number_of_houses() override { number_of_houses = 0; }
 };
 
 class FieldChance : public Field
@@ -59,7 +67,7 @@ private:
     bool choice;
 public:
     FieldChance(QString name, QString desc);
-    FieldChance() { classname = "field_station"; }
+    FieldChance() { classname = "field_chance"; }
     ~FieldChance() {}
     bool get_choice() { return choice; }
 };
@@ -75,6 +83,7 @@ public:
     ~FieldStation() {}
     virtual int get_buying_cost() override { return buying_cost; }
     virtual bool get_popped() override { return popped; }
+    virtual void set_popped(bool pop) override { popped = pop; }
 };
 
 class FieldSpecial : public Field
@@ -88,6 +97,7 @@ public:
     ~FieldSpecial() {}
     virtual int get_buying_cost() override { return buying_cost; }
     virtual bool get_popped() override { return popped; }
+    virtual void set_popped(bool pop) override { popped = pop; }
 };
 
 #endif // FIELD_H

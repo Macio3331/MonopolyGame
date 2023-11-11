@@ -5,7 +5,7 @@ MainWidget::MainWidget(QWidget *parent)
 {
     setWindowTitle("Monopoly");
     setWindowIcon(QIcon(":images/images/icon.ico"));
-    setStyleSheet("background-color: #323236");
+    setStyleSheet("color: white; background-color: #323236");
     setMinimumSize(1920, 1000);
 
     pages = new QStackedWidget(this);
@@ -22,36 +22,25 @@ MainWidget::MainWidget(QWidget *parent)
 
 MainWidget::~MainWidget()
 {
-    /*
-    delete pages;
-    delete main_menu;
-    delete main_layout;
-    delete game_menu;
-    pages = nullptr;
-    main_menu = nullptr;
-    main_layout = nullptr;
-    game_menu = nullptr;
-    */
+
 }
 
 void MainWidget::change_page()
 {
-    vector_name_players = main_menu->get_vector_name_players();
-    number_of_players = main_menu->get_number_of_players();
-    auction = main_menu->get_auction();
-    exit = main_menu->get_exit();
-    play = main_menu->get_play();
-    if(!first)
+    if(pages->currentIndex() == 0)
     {
-        pages->removeWidget(game_menu);
-        delete game_menu;
+        if(!first)
+        {
+            pages->removeWidget(game_menu);
+            delete game_menu;
+        }
         first = false;
-    }
-    game_menu = new Game(this, vector_name_players, number_of_players, auction);
-    pages->addWidget(game_menu);
+        game_menu = new Game(this, main_menu->get_vector_name_players(), main_menu->get_vector_color_players(), main_menu->get_number_of_players(), main_menu->get_auction());
+        pages->addWidget(game_menu);
 
-    if(exit) close();
-    if(pages->currentIndex() == 0) pages->setCurrentIndex(1);
+        if(main_menu->get_exit()) close();
+        pages->setCurrentIndex(1);
+    }
     else pages->setCurrentIndex(0);
 }
 

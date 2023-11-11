@@ -1,8 +1,4 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>images/icon.ico</file>
-        <file>images/monopoly_logo.png</file>
-    </qresource>
     <qresource prefix="/board">
         <file>board/board.jpg</file>
         <file>board/checker.png</file>
@@ -12,5 +8,78 @@
         <file>board/dice_4.png</file>
         <file>board/dice_5.png</file>
         <file>board/dice_6.png</file>
+        <file>board/hotel_1.png</file>
+        <file>board/hotel_2.png</file>
+        <file>board/hotel_3.png</file>
+        <file>board/hotel_4.png</file>
+        <file>board/house_1.png</file>
+        <file>board/house_2.png</file>
+        <file>board/house_3.png</file>
+        <file>board/house_4.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/icon.ico</file>
+        <file>images/monopoly_logo.png</file>
+        <file>images/exclamation_mark.png</file>
+    </qresource>
+    <qresource prefix="/fields">
+        <file>fields/atlantic_avenue.jpg</file>
+        <file>fields/baltic_avenue.jpg</file>
+        <file>fields/boardwalk.jpg</file>
+        <file>fields/connecticut_avenue.jpg</file>
+        <file>fields/dworzec_b_&amp;_o.jpg</file>
+        <file>fields/dworzec_pennsylvania.jpg</file>
+        <file>fields/dworzec_reading.jpg</file>
+        <file>fields/dworzec_short_line.jpg</file>
+        <file>fields/elektrownia.jpg</file>
+        <file>fields/illinois_avenue.jpg</file>
+        <file>fields/indiana_avenue.jpg</file>
+        <file>fields/kentucky_avenue.jpg</file>
+        <file>fields/marvin_gardens.jpg</file>
+        <file>fields/new_york_avenue.jpg</file>
+        <file>fields/north_carolina_avenue.jpg</file>
+        <file>fields/oriental_avenue.jpg</file>
+        <file>fields/pacific_avenue.jpg</file>
+        <file>fields/park_place.jpg</file>
+        <file>fields/pennsylvania_avenue.jpg</file>
+        <file>fields/st_charles_place.jpg</file>
+        <file>fields/st_james_place.jpg</file>
+        <file>fields/states_avenue.jpg</file>
+        <file>fields/tennessee_avenue.jpg</file>
+        <file>fields/ventnor_avenue.jpg</file>
+        <file>fields/vermont_avenue.jpg</file>
+        <file>fields/virginia_avenue.jpg</file>
+        <file>fields/wodociagi.jpg</file>
+        <file>fields/mediter_ranean_avenue.jpg</file>
+        <file>fields/atlantic_avenue_popped.jpg</file>
+        <file>fields/baltic_avenue_popped.jpg</file>
+        <file>fields/boardwalk_popped.jpg</file>
+        <file>fields/connecticut_avenue_popped.jpg</file>
+        <file>fields/dworzec_b_&amp;_o_popped.jpg</file>
+        <file>fields/dworzec_pennsylvania_popped.jpg</file>
+        <file>fields/dworzec_reading_popped.jpg</file>
+        <file>fields/dworzec_short_line_popped.jpg</file>
+        <file>fields/elektrownia_popped.jpg</file>
+        <file>fields/illinois_avenue_popped.jpg</file>
+        <file>fields/indiana_avenue_popped.jpg</file>
+        <file>fields/kentucky_avenue_popped.jpg</file>
+        <file>fields/marvin_gardens_popped.jpg</file>
+        <file>fields/mediter_ranean_avenue_popped.jpg</file>
+        <file>fields/new_york_avenue_popped.jpg</file>
+        <file>fields/north_carolina_avenue_popped.jpg</file>
+        <file>fields/oriental_avenue_popped.jpg</file>
+        <file>fields/pacific_avenue_popped.jpg</file>
+        <file>fields/park_place_popped.jpg</file>
+        <file>fields/pennsylvania_avenue_popped.jpg</file>
+        <file>fields/st_charles_place_popped.jpg</file>
+        <file>fields/st_james_place_popped.jpg</file>
+        <file>fields/states_avenue_popped.jpg</file>
+        <file>fields/tennessee_avenue_popped.jpg</file>
+        <file>fields/ventnor_avenue_popped.jpg</file>
+        <file>fields/vermont_avenue_popped.jpg</file>
+        <file>fields/virginia_avenue_popped.jpg</file>
+        <file>fields/wodociagi_popped.jpg</file>
+        <file>fields/kasa_spoleczna.jpg</file>
+        <file>fields/szansa.jpg</file>
     </qresource>
 </RCC>

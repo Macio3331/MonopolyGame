@@ -16,35 +16,7 @@ MainMenu::MainMenu(QWidget *parent)
 
 MainMenu::~MainMenu()
 {
-    /*
-    delete layout_menu_base;
-    delete layout_menu;
-    delete layout_menu_list_players;
-    delete layout_menu_players;
-    delete layout_menu_buttons;
-    delete label_logo;
-    delete label_options;
-    delete checkbox_auction;
-    delete label_players;
-    delete message;
-    delete button_add_player;
-    delete button_play;
-    delete button_exit;
 
-    layout_menu_base = nullptr;
-    layout_menu = nullptr;
-    layout_menu_list_players = nullptr;
-    layout_menu_players = nullptr;
-    layout_menu_buttons = nullptr;
-    label_logo = nullptr;
-    label_options = nullptr;
-    checkbox_auction = nullptr;
-    label_players = nullptr;
-    message = nullptr;
-    button_add_player = nullptr;
-    button_play = nullptr;
-    button_exit = nullptr;
-    */
 }
 
 QLabel *MainMenu::create_label(QString text, QFont font, QString stylesheet)
@@ -53,6 +25,15 @@ QLabel *MainMenu::create_label(QString text, QFont font, QString stylesheet)
     label->setText(text);
     label->setFont(font);
     label->setStyleSheet(stylesheet);
+    return label;
+}
+
+QLabel *MainMenu::create_pixmap_label(QColor color)
+{
+    QLabel* label = new QLabel(this);
+    QPixmap p(":/board/board/checker.png");
+    p.fill(color);
+    label->setPixmap(p);
     return label;
 }
 
@@ -90,19 +71,31 @@ QLineEdit *MainMenu::create_lineedit(QString text, QFont font, QString styleshee
 QHBoxLayout *MainMenu::create_hlayout(bool first_or_second)
 {
     QHBoxLayout *hlayout = new QHBoxLayout();
+
+    QLabel* color_label = create_pixmap_label(Qt::black);
+    color_label->setFixedSize(30, 30);
+    vector_color_labels_players.push_back(color_label);
+
     QLineEdit *lineedit = create_lineedit("Nazwa", QFont("Open Sans", 16), "color: white; background-color: #484852"); //color: black; background-color: white
     vector_name_players.push_back("Nazwa");
     vector_lineedit_players.push_back(lineedit);
+
+    QPushButton *button_color = create_pushbutton("Zmień kolor", QFont("Open Sans", 16), "color: white; background-color: #484852", 150, 30); //color: black; background-color: white
+    vector_color_button_players.push_back(button_color);
+    connect(button_color, SIGNAL(clicked()), this, SLOT(on_button_color_clicked()));
+    vector_color_players.push_back(Qt::black);
+
+    hlayout->addWidget(color_label);
+    hlayout->addWidget(lineedit);
+    hlayout->addWidget(button_color);
+
     if(!first_or_second)
     {
         QPushButton *button_delete = create_pushbutton("Usuń", QFont("Open Sans", 16), "color: white; background-color: #484852", 150, 30); //color: black; background-color: white
         vector_delete_button_players.push_back(button_delete);
         connect(button_delete, SIGNAL(clicked()), this, SLOT(on_button_delete_clicked()));
-        hlayout->addWidget(lineedit);
         hlayout->addWidget(button_delete);
     }
-    else
-        hlayout->addWidget(lineedit);
     return hlayout;
 }
 
@@ -188,6 +181,7 @@ void MainMenu::on_button_delete_clicked()
 {
     number_of_players--;
     label_players->setText("Liczba graczy: " + QString::number(number_of_players));
+
     QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
     int number_button_clicked = 0;
     for(int i = 0; i < vector_delete_button_players.size(); i++)
@@ -201,16 +195,54 @@ void MainMenu::on_button_delete_clicked()
     buttonSender = nullptr;
 
     vector_name_players.removeAt(number_button_clicked + 2);
+    vector_color_players.removeAt(number_button_clicked + 2);
+
+    delete vector_color_labels_players[number_button_clicked + 2];
+    vector_color_labels_players[number_button_clicked + 2] = nullptr;
+    vector_color_labels_players.removeAt(number_button_clicked + 2);
+
     delete vector_lineedit_players[number_button_clicked + 2];
     vector_lineedit_players[number_button_clicked + 2] = nullptr;
-    delete vector_delete_button_players[number_button_clicked];
-    vector_delete_button_players[number_button_clicked] = nullptr;
     vector_lineedit_players.removeAt(number_button_clicked + 2);
+
+    delete vector_color_button_players[number_button_clicked + 2];
+    vector_color_button_players[number_button_clicked + 2] = nullptr;
+    vector_color_button_players.removeAt(number_button_clicked + 2);
+
+    delete vector_delete_button_players[number_button_clicked];
+    vector_delete_button_players[number_button_clicked] = nullptr;    
     vector_delete_button_players.removeAt(number_button_clicked);
+
     layout_menu_list_players->removeItem(vector_layout_players[number_button_clicked + 2]);
     vector_layout_players[number_button_clicked + 2] = nullptr;
     vector_layout_players.removeAt(number_button_clicked + 2);
 
+}
+
+void MainMenu::on_button_color_clicked()
+{
+    QColorDialog color_dialog;
+
+    color_dialog.setStyleSheet("QColorDialog { color: white; }");
+    //color_dialog.setBackgroundRole(Qt::white);
+    QColor color = color_dialog.getColor(Qt::black, this, "Wybierz kolor pionka");
+
+    QPushButton* buttonSender = qobject_cast<QPushButton*>(sender());
+    int number_button_clicked = 0;
+    for(int i = 0; i < vector_color_button_players.size(); i++)
+    {
+        if(vector_color_button_players[i] == buttonSender)
+        {
+            number_button_clicked = i;
+            break;
+        }
+    }
+    buttonSender = nullptr;
+
+    vector_color_players[number_button_clicked] = color;
+    QPixmap p(":/board/board/checker.png");
+    p.fill(color);
+    vector_color_labels_players[number_button_clicked]->setPixmap(p);
 }
 
 void MainMenu::on_button_play_clicked()
